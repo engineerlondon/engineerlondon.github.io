@@ -95,7 +95,7 @@ We start with:
 
   * Increment left, moving it from 1 to 2.
   * **Decrement right**, moving it from 8 to 7.
-  * `while (left <= right)` 2 < 7 == false, we continue iterating:
+  * `while (left <= right)` 2 < 7 == true, we continue iterating:
   * _arr[left] is 2001 < pivot 1000, so left remains 2.
   * _arr[right] is 10 < pivot 1000, so it remains 7.
   * `2 <= 7` so we swap the values:
@@ -105,8 +105,8 @@ We start with:
 | arr   | 22  | 14  | **10** | 2002 | `1000` | 2000 | 2003 | **2001** | 1500 |
 
   * Increment left and **decrement** right, left=3, right=6.
-  * `while (left <= right)` 3 < 6 == false, we continue iterating:
-  * _arr[left] is 2002 < pivot 1000, so left remains 3.
+  * `while (left <= right)` 3 < 6 == true, we continue iterating:
+  * _arr[left] is 2002 < pivot 1000 == false, so left remains 3.
   * However: _arr[right] == _arr[6] == 2003 < pivot 1000 == true, so `right--` becomes 5, 
   * _arr[5] is 2000 < pivot 1000 == true, so `right--` becomes 4.
   * _arr[4] is 1000 < 1000 == false, we move on.
@@ -128,12 +128,13 @@ We start with:
 |:-----:|:---:|:---:|:------:|:----:|:------:|:----:|:----:|:--------:|:----:|
 | arr   | 22  | 14  | **10** | 2002 | `1000` | 2000 | 2003 | **2001** | 1500 |
 
-  * `while (left <= right)` 0 < 6 == false, we continue iterating:
+  * `while (left <= right)` 0 < 3 == true, we continue iterating:
   * _arr[left] is 2002 < pivot 1000, so left remains 3.
   * However: _arr[right] == _arr[6] == 2003 < pivot 1000 == true, so `right--` becomes 5, 
   * _arr[5] is 2000 < pivot 1000 == true, so `right--` becomes 4.
   * _arr[4] is 1000 < 1000 == false, we move on.
   * `3 <= 4` so we swap the values:
-  
+
+
 # Resources:
 [SO/q/164163/ Quick Sort Choosing The Pivot](https://stackoverflow.com/questions/164163/quicksort-choosing-the-pivot) 
