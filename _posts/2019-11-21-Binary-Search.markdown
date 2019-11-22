@@ -6,7 +6,7 @@ categories: algorithms
 ---
 A comparison search algorithm using a divide-and-conquer approach for use on **sorted** elements, finds the index position of a value in an array. This approach can be adapted for a range of purposes.
 
-# Runtime: *O (Log N)*
+# Runtime: *O (Log n)*
 Where n is the number of elements to search through.
 [Stack Overflow: What does O(log n) mean exactly?](https://stackoverflow.com/questions/2307283)
 

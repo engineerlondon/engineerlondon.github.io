@@ -25,8 +25,7 @@ I received a huge amount of support and excellent advice when moving from London
 	* It is important to note that pre-existing conditions are commonly excluded from insurance for up to five years.
 	* To make matters worse in this regard, it is highly common for waiting lists for specialist referrals to take over 52 weeks ... yep you might be waiting for a year or more, so find out if your prospective employer will provide health insurance.
 - Community:
-	* Moving country can be isolating, I found the advice of one friend to **"Do it now!"** extreemly helpful.
-	* The story of moving countries and how their experiences in differed due to this reckless abandon of engaging with their community versus taking time to settle in. Their advice to me was "Do not put off engaging with your next community of friends".
+	* Moving country can be isolating, I found the advice of one friend to **"Do it now!"** extreemly helpful. Their story of moving countries and how engaging with their community versus settling in fully significantly impacted their time there. The point was "Do not put off engaging with your next community of friends".
 	* Find your people, they exist! *Meetup* App is a good way to go.
 	* Dancing can be found across the city, but I must reccomend [Mind The Step](https://www.mindthestep.ie/the-dance-studios)
 	* Perhaps you should join your local Roller Derby Team (Dublin Roller Derby)[https://www.dublinrollerderby.com]
