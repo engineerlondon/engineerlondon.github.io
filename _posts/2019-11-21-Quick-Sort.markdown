@@ -96,8 +96,8 @@ We start with:
   * Increment left, moving it from 1 to 2.
   * **Decrement right**, moving it from 8 to 7.
   * `while (left <= right)` 2 < 7 == true, we continue iterating:
-  * _arr[left] is 2001 < pivot 1000, so left remains 2.
-  * _arr[right] is 10 < pivot 1000, so it remains 7.
+  * _arr[left] is 2001 < pivot 1000 == false, so left remains 2.
+  * _arr[right] == _arr[7] is 10 > pivot 1000 == false, so it remains 7.
   * `2 <= 7` so we swap the values:
 
 | Index |  0  |  1  |   2    |   3  |    4   |   5  |   6  |     7    |   8  |
@@ -107,7 +107,7 @@ We start with:
   * Increment left and **decrement** right, left=3, right=6.
   * `while (left <= right)` 3 < 6 == true, we continue iterating:
   * _arr[left] is 2002 < pivot 1000 == false, so left remains 3.
-  * However: _arr[right] == _arr[6] == 2003 < pivot 1000 == true, so `right--` becomes 5, 
+  * However: _arr[right] == _arr[6] == 2003 > pivot 1000 == true, so `right--` becomes 5, 
   * _arr[5] is 2000 < pivot 1000 == true, so `right--` becomes 4.
   * _arr[4] is 1000 < 1000 == false, we move on.
   * `3 <= 4` so we swap the values:
@@ -122,19 +122,39 @@ We start with:
 
 # Back in Sort
 * We test `if (left < index - 1)` where left was passed in and = 0 and index was returned by partition as 4, 0 is less than 3
-* so we call `Sort( 0, 3 )`
+* So we call `Sort( 0, 3 )`
 * Sort then calls `int index = Partition(left, right);` and we do it again on our sub set 0-3
-| Index |  0  |  1  |   2    |   3  |    4   |   5  |   6  |     7    |   8  |
-|:-----:|:---:|:---:|:------:|:----:|:------:|:----:|:----:|:--------:|:----:|
-| arr   | 22  | 14  | **10** | 2002 | `1000` | 2000 | 2003 | **2001** | 1500 |
+  * Our new pivot = arr[(0 + 3) / 2] = 14 (Integer division we round down, so get Index=1)
+  * `while (left <= right)` (0 < 3) == true, we continue iterating:
+  * _arr[left] == _arr[0] == 22 < pivot 14 == false, so left remains 0.
+  * _arr[right] == _arr[3] == 2002 > pivot 14 == true, so `right--`
+  * _arr[right] == _arr[2] == 10 > pivot 14 == false, so we move on.
+  * `0 <= 3` so we swap the values:
 
-  * `while (left <= right)` 0 < 3 == true, we continue iterating:
-  * _arr[left] is 2002 < pivot 1000, so left remains 3.
-  * However: _arr[right] == _arr[6] == 2003 < pivot 1000 == true, so `right--` becomes 5, 
-  * _arr[5] is 2000 < pivot 1000 == true, so `right--` becomes 4.
-  * _arr[4] is 1000 < 1000 == false, we move on.
-  * `3 <= 4` so we swap the values:
+| Index |    0    |   1   |   2    |   3  |   4  |   5  |   6  |   7  |   8  |
+|:-----:|:-------:|:-----:|:------:|:----:|:----:|:----:|:----:|:----:|:----:|
+| arr   | **10**  | `14`  | **22** | 1000 | 2002 | 2000 | 2003 | 2001 | 1500 |
+
+* Increment left and **decrement** right, left=1, right=1.
+* `1 <= 1 == true`, 
+* _arr[left] == _arr[1] == 14 < pivot 14 == false so left remains 1.
+* _arr[right] == _arr[1] == 14 > pivot 14 == false, so we move on.
+*  We go to swap 1 with 1, the swap method recognises this as not required and returns.
+* `return left;` (returns 2, back to Sort, setting int index = 2).
+
+# Back in Sort
+* We then call `Sort(0, 1)` which returns 1, setting int index = 1;
+* `if (left < index - 1)` 0 < 1 - 1 == false, so we move on to the sorting of the RHS for this partition and call Sort(2, 3);
+* Pivot becomes 22, right gets decremented once to 2, swap(2,2) is called with no effect. left++ is called resulting in 3 being returned.
+* Back in sort 3 > 3 == false and 3 < 3 == false so we return up the stack, and up the stack again. The LHS is sorted.
+* Were back to index = 4, right = 8.
+* 4 < 8 == true so we now Sort the RHS by calling Sort(4, 8).
+* Which results in int index = Partition(4, 8);
+* Pivot = 2003
+* 2002 is in the correct place relative to the pivot so we `left++`
+* 2000 is also in the right place relative to 2003, so we 
 
 
 # Resources:
-[SO/q/164163/ Quick Sort Choosing The Pivot](https://stackoverflow.com/questions/164163/quicksort-choosing-the-pivot) 
+[SO/q/164163/ Quick Sort Choosing The Pivot](https://stackoverflow.com/questions/164163/quicksort-choosing-the-pivot)
+[SO/q/3602827 What Is The Behavior Of Integer Division] (https://stackoverflow.com/questions/3602827/what-is-the-behavior-of-integer-division)
