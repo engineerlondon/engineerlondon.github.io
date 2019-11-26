@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Quick Sort"
-date:   2019-11-21 09:00:00 +0000
+date:   2019-11-18 09:00:00 +0000
 categories: algorithms
 mathjax: true
 ---
