@@ -5,11 +5,7 @@ date:   2019-11-21 09:00:00 +0000
 categories: algorithms
 mathjax: true
 ---
-
-# Ways of learning
-Indervidual's learning styles are differnt, there are a huge veriety of choices out there, this is what worked for me.
-
-I have re-created one of a number of solutions to Quick Sort below and stepped through the code using the example test also provided, this detailed step through example is how I orriginally got to grips with Quick Sort, I reccomend doing it yourself, reading the below might be useful as a refresher, but to really embed the understanding take the time to write it yourself, write a test and give it your best shot, once you have struggled for a good while then check back against an example, then walk through it like I have below, and to really cement the understanding write out what is happening as you step through.
+A very common and efficient sorting algorithm, usually implemented with recursion, swaps elements around a pivot.
 
 # Runtime: \\(O (n Log n)\\) average case, worst case \\(O(n^2)\\).
 * Where n is the number of elements to sort.
@@ -17,6 +13,11 @@ I have re-created one of a number of solutions to Quick Sort below and stepped t
 * We also get poor performance when trying to sort an array with a large number of repeated elements.
 * In the below I have tried to highlight the depth of call stack to give an appreciation of the fact that despite the multiple while loops this implementation heavily relies on recursion.
 * Benchmarking of a recursive Quick Sort implementation out performs an iterative approach. [SO/q/12553238 Quick Sort iterative or recursive](https://stackoverflow.com/questions/12553238/quicksort-iterative-or-recursive)
+
+# Ways of learning
+Indervidual's learning styles are differnt, there are a huge veriety of choices out there, this is what worked for me.
+
+I have re-created one of a number of solutions to Quick Sort below and stepped through the code using the example test also provided, this detailed step through example is how I orriginally got to grips with Quick Sort, I reccomend doing it yourself, reading the below might be useful as a refresher, but to really embed the understanding take the time to write it yourself, write a test and give it your best shot, once you have struggled for a good while then check back against an example, then walk through it like I have below, and to really cement the understanding write out what is happening as you step through.
 
 # Quick Sort C#:
 {% highlight Csharp %}
@@ -76,8 +77,9 @@ public class QuickSort
 {% endhighlight %}
 
 # Stepping through:
+I reccomend doing this yourself in an IDE.
 
-We want :
+We are aiming for a sorted list:
 
 | Index |  0  |   1  |   2  |   3  |   4  |   5  |   6  |  7   |  8   |
 |:-----:|:---:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
@@ -203,7 +205,7 @@ We start with:
 
 
 
-# Example test:
+# Example tests:
 {% highlight Csharp %}
 [Fact]
 public void QuickSortSimpleArrayTest()

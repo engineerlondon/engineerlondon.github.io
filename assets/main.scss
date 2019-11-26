@@ -1,0 +1,42 @@
+---
+---
+
+@import "minima";
+
+body {
+  background-color: #EEE8AA;
+}
+
+a {
+  color: #5B5B31;
+}
+
+main a {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #1D1D00;
+}
+
+.site-header {
+  border-top: none;
+  border-bottom: 1px solid #828282;
+}
+
+table th, table td {
+  border: 1px solid #EBB;
+}
+
+table th {
+  background-color: #E8E8C2;
+}
+
+
+table td, pre, code {
+  background-color: #E7EFC0;
+}
+
+table td code {
+  background-color: white;
+}
