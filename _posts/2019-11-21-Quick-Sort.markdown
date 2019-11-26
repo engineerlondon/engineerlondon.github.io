@@ -5,19 +5,19 @@ date:   2019-11-21 09:00:00 +0000
 categories: algorithms
 mathjax: true
 ---
-A very common and efficient sorting algorithm, usually implemented with recursion, swaps elements around a pivot.
+A very common and efficient in-place, comparison sorting algorithm, usually implemented with recursion, swaps elements around a pivot. For best performance the choice of pivot is important.
 
 # Runtime: \\(O (n Log n)\\) average case, worst case \\(O(n^2)\\).
 * Where n is the number of elements to sort.
-* If the pivot selected in Partition is at the start or the end of the array we will get worst case performance on an already sort a sorted array, somthing that happens more than might be expected.
+* If the pivot selected in Partition is at the start or end of the array we will get worst case performance on an already sort a sorted array, something that happens more than might be expected.
 * We also get poor performance when trying to sort an array with a large number of repeated elements.
 * In the below I have tried to highlight the depth of call stack to give an appreciation of the fact that despite the multiple while loops this implementation heavily relies on recursion.
 * Benchmarking of a recursive Quick Sort implementation out performs an iterative approach. [SO/q/12553238 Quick Sort iterative or recursive](https://stackoverflow.com/questions/12553238/quicksort-iterative-or-recursive)
 
 # Ways of learning
-Indervidual's learning styles are differnt, there are a huge veriety of choices out there, this is what worked for me.
+Individual's learning styles are different, there are a huge verity of choices out there, this is what worked for me.
 
-I have re-created one of a number of solutions to Quick Sort below and stepped through the code using the example test also provided, this detailed step through example is how I orriginally got to grips with Quick Sort, I reccomend doing it yourself, reading the below might be useful as a refresher, but to really embed the understanding take the time to write it yourself, write a test and give it your best shot, once you have struggled for a good while then check back against an example, then walk through it like I have below, and to really cement the understanding write out what is happening as you step through.
+I have re-created one of a number of solutions to Quick Sort below and stepped through the code using a unit test, also provided, this detailed step through example is how I originally got to grips with Quick Sort, I recommend doing it yourself, reading the below might be useful as a refresher, but to really embed the understanding take the time to write it yourself, write a test and give it your best shot, once you have struggled for a good while then check back against an example, then walk through it like I have below, and to really cement the understanding write out what is happening as you step through.
 
 # Quick Sort C#:
 {% highlight Csharp %}
