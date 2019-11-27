@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Overflow Hazard in Algorithms"
-date:   2019-11-21 09:00:00 +0000
+date:   2019-11-17 09:00:00 +0000
 categories: algorithms
 ---
 
@@ -10,5 +10,5 @@ In a number of algorithms there is a risk of very lage numbers overflowing, part
  * int mid = (low + high) \>\>\> 1 (\>\>\> in Java performs a logical-right-shift)
  * int mid = low + ((high - low) / 2)
  
-[StackOverflow/q/6735259](https://stackoverflow.com/questions/6735259)
-[topcoder.com community binary-search](https://www.topcoder.com/community/competitive-programming/tutorials/binary-search)
+* [StackOverflow/q/6735259](https://stackoverflow.com/questions/6735259)
+* [topcoder.com community binary-search](https://www.topcoder.com/community/competitive-programming/tutorials/binary-search)
