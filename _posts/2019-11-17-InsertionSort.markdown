@@ -142,4 +142,4 @@ public void InsertionSortMediumSizedRandomArrayTest()
 {% endhighlight %}
 
 # Resources:
-* 
+* https://www.hackerrank.com/challenges/insertionsort2/problem
