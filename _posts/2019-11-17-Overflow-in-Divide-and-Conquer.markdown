@@ -14,7 +14,7 @@ We need to handle the problem of "wrap around" / overflow resulting in a negativ
  * `int mid = (low + high) \>\>\> 1;` (in Java \>\>\> performs a logical-right-shift)
  * `int mid = low + ((high - low) / 2)`
 
-With one of the above we garantee that when the sum of low and high is greater than the maximum positive int value \\((2^31\) - 1\\) the pivot point / mid point calculated is still positive.
+With one of the above we guarantee that when the sum of low and high is greater than the maximum positive int value \\((2^31\) - 1\\) the pivot point / mid point calculated is still positive.
  
 * [StackOverflow/q/6735259](https://stackoverflow.com/questions/6735259)
 * [topcoder.com community binary-search](https://www.topcoder.com/community/competitive-programming/tutorials/binary-search)
