@@ -243,3 +243,4 @@ public void QuickSortLargeRandomArrayTest()
 # Resources:
 * [SO/q/164163 Quick Sort Choosing The Pivot](https://stackoverflow.com/questions/164163/quicksort-choosing-the-pivot)
 * [Cracking the coding interview 6th edition](http://www.crackingthecodinginterview.com)
+* [hacker rank challenges quicksort](https://www.hackerrank.com/challenges/quicksort1/problem)
