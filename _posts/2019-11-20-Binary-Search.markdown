@@ -34,6 +34,35 @@ int BinarySearch(int[] valuesToSearch, int valueToFind){
 * Continue to divide and test until we reach low > high, in which case we never found a match.
 * Or valuesToSearch[mid] is neither > or < the valueToFind, in which case we must have found valueToFind, so return the index.
 
+# Example tests:
+{% highlight Csharp %}
+[Fact]
+public void SearchFindSecondValueArrayTest()
+{
+	BinarySearch search = new BinarySearch();
+	int[] arr = { 10, 14, 22, 1000, 1500, 2000, 2001, 2002, 2003 };
+	int result = search.Search(arr, 14);
+	Assert.Equal(1, result);
+}
+
+[Fact]
+public void SearchFindIntMaxValue()
+{
+	BinarySearch search = new BinarySearch();
+	int[] arr = { 10, 14, 22, 1000, 1500, 2000, 2001, 2002, int.MaxValue };
+	int result = search.Search(arr, int.MaxValue);
+	Assert.Equal(8, result);
+}
+
+[Fact]
+public void SearchValueDoesNotExistTest()
+{
+	BinarySearch search = new BinarySearch();
+	int[] arr = { 10, 14, 22, 1000, 1500, 2000, 2001, 2002, 2003 };
+	int result = search.Search(arr, 5);
+	Assert.Equal(-1, result);
+}
+{% endhighlight %}
 
 Also check out [an algorithm for finding the median element in an unsorted array in linear time, constant space](https://www.quora.com/Whats-an-algorithm-for-finding-the-median-element-in-an-unsorted-array-in-linear-time-constant-space)
 
