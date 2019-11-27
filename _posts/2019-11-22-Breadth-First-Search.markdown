@@ -4,80 +4,122 @@ title:  "Breadth First Search"
 date:   2019-11-21 09:00:00 +0000
 categories: algorithms, searching
 ---
-A non-comparative sort algorithm used primarily for numbers 0-9 "buckets" or it can also be used on strings by using 26 buckets, one for each letter.
-[https://www.quora.com/What-are-the-differences-between-radix-sort-and-bucket-sort](https://www.quora.com/What-are-the-differences-between-radix-sort-and-bucket-sort)
-It is an-place and stablesorting algorithm.
 
-Although this video is not the most polished I reccomend manually sorting an array, this short video (11m 50s) gives a great introduction to Radix sort [Youtube: Jenny's lectures CS/IT NET&JRF - Radix Sort](https://www.youtube.com/watch?v=JMlYkE8hGJM)
 
-# Example:
-[12, 22, 4, 90, 890, 1999, 4, 22]
-
-# Runtime: *O(kn)*
-* k number of digits (4) of maximum value (1999)
-* n integers in the range (8)
+# Runtime: 
 
 # C#
 {% highlight Csharp %}
-public int[] Sort(int[] arr)
+public Node Search(Node root, string elementToFind)
 {
-	int[] tmp = new int[arr.Length];
-	for (int shift = 31; shift > -1; --shift)
+	var queue = new Queue<Node>();
+	root.Marked = true;
+	queue.Enqueue(root);
+
+	Node elem;
+	while ((elem = queue.Dequeue()) != null)
 	{
-		var j = 0;
-		int i;
-		for (i = 0; i < arr.Length; ++i)
+		if (elem.Name == elementToFind)
 		{
-			bool move = arr[i] << shift >= 0;
-			if (shift == 0 ? !move : move)
-				arr[i - j] = arr[i];
-			else
-				tmp[j++] = arr[i];
+			return elem;
 		}
-		Array.Copy(tmp, 0, arr, arr.Length - j, j);
+
+		foreach (Node n in elem.Children)
+		{
+			if (!n.Marked)
+			{
+				n.Marked = true;
+				queue.Enqueue(n);
+			}
+		}
 	}
 
-	return arr;
+	return null;
 }
+
+public class Node
+{
+	public IEnumerable<Node> Children = new List<Node>();
+	public bool Marked;
+	public string Name { get; set; }
+
+	public Node(string name)
+	{
+		Name = name;
+	}
+}
+
 {% endhighlight %}
 [Source: w3 Resource](https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-10.php)
 [Shared under create commons licence](https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
 
-
 # Example tests:
 {% highlight Csharp %}
 [Fact]
-public void RadixSortSimpleArrayTest()
+public void BfsFindRouteBetweenFifteenNodes()
 {
-	int[] expected = { 10, 14, 22, 1000, 1500, 2000, 2001, 2002, 2003 };
-	int[] arr = { 22, 1500, 2001, 2002, 1000, 2000, 2003, 10, 14 };
-
-	var sort = new RadixSort();
-
-	var result = sort.Sort(arr);
-	Assert.Equal(expected, result);
-}
-
-[Fact]
-public void RadixSortLargeRandomArrayTest()
-{
-	int Min = int.MinValue;
-	int Max = int.MaxValue;
-	Random randNum = new Random();
-	int[] arr = Enumerable
-		.Repeat(0, 100000)
-		.Select(i => randNum.Next(Min, Max))
-		.ToArray();
-
-	int[] expected = new int[arr.Length];
-	arr.CopyTo(expected, 0);
-	Array.Sort(expected);
-
-	var sort = new RadixSort();
-	var result = sort.Sort(arr);
-	Assert.Equal(expected, result);
+	BreadthFirstSearch.Node head = new BreadthFirstSearch.Node("bob");
+	head.Children = new List<BreadthFirstSearch.Node>
+	{
+		new BreadthFirstSearch.Node("Rob"),
+		new BreadthFirstSearch.Node("Garry"),
+		new BreadthFirstSearch.Node("Helen")
+		{
+			Children = new List<BreadthFirstSearch.Node>{new BreadthFirstSearch.Node("Andrew") }
+		}
+	};
+	BreadthFirstSearch bfs = new BreadthFirstSearch();
+	var result = bfs.Search(head, "Helen");
+	var firstChildVal = result.Children.FirstOrDefault().Name;
+	Assert.Equal("Andrew", firstChildVal);
 }
 {% endhighlight %}
 
 # Resources
-* [Hacker Rank counting sort](https://www.hackerrank.com/challenges/countingsort1/problem)
+* [Hacker Rank practice graph theory bfs](https://www.hackerrank.com/challenges/linkedin-practice-graph-theory-bfs)
+* [Hacker Rank Pac Man BFS](https://www.hackerrank.com/challenges/pacman-bfs)
+
+# C# Generic version: 
+{% highlight Csharp %}
+public class BreadthFirstSearch
+{
+	public Node<T> Search<T>(BreadthFirstSearch.Node<T> root, T elementToFind)
+	{
+		var queue = new Queue<Node<T>>();
+		root.Marked = true;
+		queue.Enqueue(root);
+
+		Node<T> elem;
+		while ((elem = queue.Dequeue()) != null)
+		{
+			if (elem.Name.Equals(elementToFind))
+			{
+				return elem;
+			}
+
+			foreach (Node<T> n in elem.Children)
+			{
+				if (!n.Marked)
+				{
+					n.Marked = true;
+					queue.Enqueue(n);
+				}
+			}
+		}
+
+		return null;
+	}
+
+	public class Node<T>
+	{
+		public IEnumerable<Node<T>> Children = new List<Node<T>>();
+		public bool Marked;
+		public T Name { get; set; }
+
+		public Node(T name)
+		{
+			Name = name;
+		}
+	}
+}
+{% endhighlight %}
