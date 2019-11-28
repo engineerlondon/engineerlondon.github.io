@@ -29,5 +29,5 @@ I received a huge amount of support and excellent advice when moving from London
   * Moving country can be isolating - I found the advice of one friend to **"Do it now!"** extremely helpful. I was struck by their story of moving countries and how engaging with their community versus waiting to fully settle in significantly impacted their time there. The point was "Do not put off engaging with your next community of friends".
   * Find your people - they exist! The *Meetup* app is a good way to go.
   * Social dancing is a great way to meet people, especially other people new to Dublin, and can be found across the city. I must recommend [Mind The Step](https://www.mindthestep.ie/the-dance-studios).
-  * I used to referee for roller derby teams in London so looked up the local team in Dublin (Dublin Roller Derby)[https://www.dublinrollerderby.com]. I found them really welcoming and there are roles in the league for both skaters and non-skaters. 
+  * I used to referee for roller derby teams in London so looked up the local team in Dublin (https://www.dublinrollerderby.com)[Dublin Roller Derby]. I found them really welcoming and there are roles in the league for both skaters and non-skaters. 
   * Fancy a coffee? Hit me up on LinkedIn.
