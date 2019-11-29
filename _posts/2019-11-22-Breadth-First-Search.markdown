@@ -6,13 +6,20 @@ categories: algorithms, searching
 mathjax: true
 ---
 Graphs and Trees are a versatile way of representing the real world, described in terms of nodes (ie the entities of interest) and edges (ie the links between the nodes), examples include:
-* A social network of relationships
-* Travel routing; flights between airports where the airports are the nodes and the routes are the edges. Or towns are the nodes and roads are the edges. Or pubs and rivers are the edges
-* Internet connections to properties where properties are nodes and telephone lines are the edges.
-The multi dimensional nature of graph structures enables reduces the complexity of creating a digital representation of relationships. It is important to note that data in a graph structure is not necessarily connected. 
-Being able to traverse graphs is valuable, we can find the shortest path between locations, or the number of friends connecting two indirviduals on a social network.
-Breadth First Search (BFS) and Depth First Search (DFS) are two core tools that enable the finding of a specific connected node in a graph starting from a known node.
-* BFS can be used to calculate the shortest distance, and route from A to B.
+* A social network of relationships.
+* Travel routing:
+	* Flights where airports are nodes and flight routes are edges.
+	* Towns are nodes and roads the edges.
+	* Pubs and rivers are edges.
+* Internet connections to properties where properties are nodes and telephone lines are edges.
+
+The multi dimensional nature of graph structures reduces the complexity of creating a digital representation of relationships.
+It is important to note that data in a graph structure is not necessarily connected. 
+
+Consequently being able to traverse graphs is valuable, we can find the shortest path between locations or the number of friends connecting two indirviduals on a social network.
+* Breadth First Search (BFS) and Depth First Search (DFS) are two core tools that enable the finding of a specific connected node in a graph starting from a known node.
+* BFS can be used to efficiently evaluate the shortest path.
+* In the same way BFS can be used to find the shortest route from A to B.
 
 # DFS vs BFS
 There are a number of situations where BFS is more appropriate than DFS and vice versa, the context of the interaction is crucial for choosing the right tool.
