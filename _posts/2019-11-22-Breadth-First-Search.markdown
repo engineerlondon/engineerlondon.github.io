@@ -17,7 +17,7 @@ Breadth First Search (BFS) and Depth First Search (DFS) are two core tools that 
 There are a number of situations where BFS is more appropriate than DFS and vice versa, the context of the interaction is crucial for choosing the right tool.
 * When a node should be close to the start point, eg Social network, the friend that a person is searching for is likely to be a small number of nodes from them. City I want to route to is likely to be the shorter distance, eg: We start in London (UK) and want to reach Glasgow I want the map to offer Glasgow, Scotland (UK) before Glasgow, Montana (USA). - BFS
 * If a graph has "infinite" relationships for example the internet with its (~340 undecillion possible addresses) and we want to send packets from A to B, we use a specialised version of BFS (Dijkstra's algorithm) which will take into account the cost of a route, we also make use of Time to live (TTL) or hop limit in the system to avoid requests continuig forever.
- 
+* If solutions are frequent but located deep in the tree BFS will likely take longer and require more memory than DFS eg: given a Graph represnting the geographical location of all towns and villages in Ireland, find a town or village located on the Wild Atlantic way, start in Dublin.
 
 # Runtime: Worst case: \\(O(V + E)\\)
 * Where E is the count edges and V is the count of vertices.
@@ -73,12 +73,13 @@ public SimpleNode Search(SimpleNode root, string elementToFind)
 {% endhighlight %}
 
 # Quick Walk-through
-* We add the head of our node to the queue
-* We go into the while loop `while (queue.Count > 0)` and de-queue the head node
-* We check if the value of the node is the one we are looking for
-* We then iterate the children of the head node
-* For each child we check if we have already visited it `if (!n.Marked)`
-* If not visited we now mark it as visited and enqueue the node so that it's value and children are checked
+* We mark the head node as visited.
+* We add the head of our node to the queue.
+* We go into the while loop `while (queue.Count > 0)` and de-queue the head node.
+* We check if the value of the node is the one we are looking for.
+* We then iterate the children of the head node.
+* For each child we check if we have already visited it `if (!n.Marked)`.
+* If not visited we now mark it as visited and enqueue the node so that it's value and children are checked.
 * If we never find a result we return null.
 
 # Example tests:
@@ -109,7 +110,7 @@ public void StringBfsSearchTest()
 
 
 # C# Generic version:
-Introducing support for data types other than string, by creating a generic node class:
+Introducing support for data types other than string, using a generic node class:
 {% highlight Csharp %}
 
 public class Node<T>
@@ -153,7 +154,115 @@ public Node<T> Search<T>(Node<T> root, T elementToFind)
 
 {% endhighlight %}
 
+# BFS Finding distance to a node
 
+
+# C# Tests:
+{% highlight Csharp %}
+public class BfsShortestPathTests
+{
+	[Fact]
+	public void BfsCountShortestPath()
+	{
+		var alex = new BfsNode.Node<string>("Alex");
+		var rob = new BfsNode.Node<string>("Rob");
+		var garry = new BfsNode.Node<string>("Garry");
+
+		// Khalid is friends with alex, rob and garry
+		var khalid = new BfsNode.Node<string>("Khalid")
+		{
+			Children = new List<BfsNode.Node<string>>
+				{alex, rob, garry}
+		};
+		// Andrew if friends with Alex and Khalid
+		var andrew = new BfsNode.Node<string>("Andrew")
+		{
+			Children = new List<BfsNode.Node<string>>
+				{khalid, alex}
+		};
+		// Helen is friends with Andrew
+		var helen = new BfsNode.Node<string>("Helen")
+		{
+			Children = new List<BfsNode.Node<string>> { andrew }
+		};
+		// Bob is friends with Helen and Khalid
+		// Shortest path to Alex = Bob (0) -> Khalid (1) -> Alex (2 connections away).
+		// Longer path to Alex = Bob -> Helen -> Andrew -> Alex (3 connections away).
+		// Even longer path Alex = Bob -> Helen -> Andrew -> Khalid -> Alex (4 connections away).
+		BfsNode.Node<string> head = new BfsNode.Node<string>("Bob")
+		{
+			Children = new List<BfsNode.Node<string>>
+			{ helen, khalid}
+		};
+
+		var bfs = new BfsCountShortestPath();
+		var result = bfs.Search(head, "Alex");
+		int expected = 2;
+		Assert.Equal(expected, result);
+	}
+
+	[Fact]
+	public void BfsCountShortestNoChildNodesNoMatchPath()
+	{
+		BfsNode.Node<string> head = new BfsNode.Node<string>("bob");
+
+		var bfs = new BfsCountShortestPath();
+		var result = bfs.Search(head, "Alex");
+		int expected = -1;
+		Assert.Equal(expected, result);
+	}
+
+	[Fact]
+	public void BfsCountShortestNoChildNodesMatchPath()
+	{
+		BfsNode.Node<string> head = new BfsNode.Node<string>("bob");
+
+		var bfs = new BfsCountShortestPath();
+		var result = bfs.Search(head, "bob");
+		int expected = 0;
+		Assert.Equal(expected, result);
+	}
+}
+{% endhighlight %}
+
+# C# Solution - BFS find shortest Path
+{% highlight Csharp %}
+public int Search<T>(BfsNode.Node<T> root, T elementToFind)
+{
+	var dist = new Dictionary<T, int>();
+	var queue = new Queue<BfsNode.Node<T>>();
+	root.Marked = true;
+	queue.Enqueue(root);
+	dist.Add(root.Name, 0);
+
+	while (queue.Count > 0)
+	{
+		var elem = queue.Dequeue();
+
+		if (elem.Name.Equals(elementToFind))
+			return dist[elem.Name];
+
+		foreach (BfsNode.Node<T> n in elem.Children)
+		{
+			if (!n.Marked)
+			{
+				n.Marked = true;
+				queue.Enqueue(n);
+				if (!dist.ContainsKey(n.Name))
+					dist.Add(n.Name, dist[elem.Name] + 1);
+			}
+		}
+	}
+
+	return -1;
+}
+{% endhighlight %}
+
+# Walk-through of changes:
+* We have added a Dictionary (equivelent of a Java HashMap) **dist** to track the number of hops for a given node.
+* We add the head node distance as zero.
+* While the queue is not empty, we check if the element we are looking for is the element we have taken off the queue, this avoids unnecessary work continuing after a solution has been found. If this node's name matches the one we are searching for, return its distance value from the Dictionary using the key `dist[elem.Name]`.
+* Else we go through the child nodes adding them to the queue, and in the process we check if a distance has not already been added `if (!dist.ContainsKey(n.Name))` (it will be the shorter or equal distance), if not already added we add the distance using the name as its key and the value = current element's distance + 1  `dist.Add(n.Name, dist[elem.Name] + 1)`.
 
 
 # Resources
