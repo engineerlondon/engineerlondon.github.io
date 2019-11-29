@@ -13,6 +13,7 @@ The multi dimensional nature of graph structures enables reduces the complexity 
 Being able to traverse graphs is valuable, we can find the shortest path between locations, or the number of friends connecting two indirviduals on a social network.
 Breadth First Search (BFS) and Depth First Search (DFS) are two core tools that enable the finding of a specific connected node in a graph starting from a known node.
 * BFS can be used to calculate the shortest distance, and route from A to B.
+
 # DFS vs BFS
 There are a number of situations where BFS is more appropriate than DFS and vice versa, the context of the interaction is crucial for choosing the right tool.
 * When a node should be close to the start point, eg Social network, the friend that a person is searching for is likely to be a small number of nodes from them. City I want to route to is likely to be the shorter distance, eg: We start in London (UK) and want to reach Glasgow I want the map to offer Glasgow, Scotland (UK) before Glasgow, Montana (USA). - BFS
@@ -57,10 +58,9 @@ public SimpleNode Search(SimpleNode root, string elementToFind)
 	while (queue.Count > 0)
 	{
 		var elem = queue.Dequeue();
-		if (elem.Name == elementToFind)
-		{
+		if (elem.Name.Equals(elementToFind))
 			return elem;
-		}
+		
 
 		foreach (SimpleNode n in elem.Children)
 		{
@@ -139,9 +139,7 @@ public Node<T> Search<T>(Node<T> root, T elementToFind)
 	{
 		var elem = queue.Dequeue();
 		if (elem.Name.Equals(elementToFind))
-		{
 			return elem;
-		}
 
 		foreach (Node<T> n in elem.Children)
 		{
