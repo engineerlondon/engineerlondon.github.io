@@ -20,13 +20,17 @@ There are a number of situations where BFS is more appropriate than DFS and vice
 * If solutions are frequent but located deep in the tree BFS will likely take longer and require more memory than DFS eg: given a Graph represnting the geographical location of all towns and villages in Ireland, find a town or village located on the Wild Atlantic way, start in Dublin.
 
 # Runtime: Worst case: \\(O(V + E)\\)
-* Where E is the count edges and V is the count of vertices.
+* Where E is the count edges and V is the count of vertices (nodes).
 * Where the graph uses an adjacency list structure
-* Aside: adjacency list has a space complexity of \\(O(V + E)\\).
+* [Stack Overflow - BFS and DFS time complexity](https://stackoverflow.com/questions/11468621/why-is-the-time-complexity-of-both-dfs-and-bfs-o-v-e)
+
+# Memory: Worst case \\(O(V)\\)
+* Where V is the set of vertices / count of all nodes, since in the worst case we could have a single head node with all other nodes imediately attached, as you will see below, we will enqueue all of the child nodes before starting to dequeue them. As the graph gets larger this could become impractical. 
+
+# Adjacency Graph space complexity \\(O(V + E)\\)
+* It is sometimes useful to consider the cost of the actual graph since we might want to fit both the graph and the data structure required to carry out the search on one machine.
 * "An adjacency list is an array A of separate lists. Each element of the array Ai is a list, which contains all the vertices that are adjacent to vertex i." - [Tutorial on Graph Representation](https://www.hackerearth.com/practice/algorithms/graphs/graph-representation/tutorial)
 * "An adjacency list representation for a graph associates each vertex in the graph with the collection of its neighbouring vertices or edges" - [Wikipedia Adjacency List](https://en.wikipedia.org/wiki/Adjacency_list)
-
-* [Stack Overflow - BFS and DFS time complexity](https://stackoverflow.com/questions/11468621/why-is-the-time-complexity-of-both-dfs-and-bfs-o-v-e)
 
 # C# BFS finds a node with name = elementToFind.
 * The queue is the core of BFS, it allows us to visit all adjacent nodes before moving to the next level.
@@ -226,6 +230,8 @@ public class BfsShortestPathTests
 {% endhighlight %}
 
 # C# Solution - BFS find shortest Path
+* The addition of a Dictionary (equivalent of a Java HashMap) increases our memory requirements by \\(O(n)\\).
+
 {% highlight Csharp %}
 public int Search<T>(BfsNode.Node<T> root, T elementToFind)
 {
@@ -259,7 +265,7 @@ public int Search<T>(BfsNode.Node<T> root, T elementToFind)
 {% endhighlight %}
 
 # Walk-through of changes:
-* We have added a Dictionary (equivelent of a Java HashMap) **dist** to track the number of hops for a given node.
+* We have added a Dictionary **dist** to track the number of hops for a given node.
 * We add the head node distance as zero.
 * While the queue is not empty, we check if the element we are looking for is the element we have taken off the queue, this avoids unnecessary work continuing after a solution has been found. If this node's name matches the one we are searching for, return its distance value from the Dictionary using the key `dist[elem.Name]`.
 * Else we go through the child nodes adding them to the queue, and in the process we check if a distance has not already been added `if (!dist.ContainsKey(n.Name))` (it will be the shorter or equal distance), if not already added we add the distance using the name as its key and the value = current element's distance + 1  `dist.Add(n.Name, dist[elem.Name] + 1)`.
