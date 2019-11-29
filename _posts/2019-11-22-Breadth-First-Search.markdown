@@ -5,14 +5,26 @@ date:   2019-11-21 09:00:00 +0000
 categories: algorithms, searching
 mathjax: true
 ---
-Graphs and Trees are a versatile way of representing the real world, Social networks, travel routing (flights, roads and towns, rivers), telephone / power / water connections, all can be represented practically using graph structures. As a result being able to traverse graphs becomes valuable, Breadth First Search (BFS) and Depth First Search are two core tools that enable the finding of nodes and in the case of BFS it can be used to calculate the lengths of paths to a node, eg: the longest, shortest or all paths.
+Graphs and Trees are a versatile way of representing the real world, described in terms of nodes (ie the entities of interest) and edges (ie the links between the nodes), examples include:
+* A social network of relationships
+* Travel routing; flights between airports where the airports are the nodes and the routes are the edges. Or towns are the nodes and roads are the edges. Or pubs and rivers are the edges
+* Internet connections to properties where properties are nodes and telephone lines are the edges.
+The multi dimensional nature of graph structures enables reduces the complexity of creating a digital representation of relationships. It is important to note that data in a graph structure is not necessarily connected. 
+Being able to traverse graphs is valuable, we can find the shortest path between locations, or the number of friends connecting two indirviduals on a social network.
+Breadth First Search (BFS) and Depth First Search (DFS) are two core tools that enable the finding of a specific connected node in a graph starting from a known node.
+* BFS can be used to calculate the shortest distance, and route from A to B.
+# DFS vs BFS
+There are a number of situations where BFS is more appropriate than DFS and vice versa, the context of the interaction is crucial for choosing the right tool.
+* When a node should be close to the start point, eg Social network, the friend that a person is searching for is likely to be a small number of nodes from them. City I want to route to is likely to be the shorter distance, eg: We start in London (UK) and want to reach Glasgow I want the map to offer Glasgow, Scotland (UK) before Glasgow, Montana (USA). - BFS
+* If a graph has "infinite" relationships for example the internet with its (~340 undecillion possible addresses) and we want to send packets from A to B, we use a specialised version of BFS (Dijkstra's algorithm) which will take into account the cost of a route, we also make use of Time to live (TTL) or hop limit in the system to avoid requests continuig forever.
+ 
 
 # Runtime: Worst case: \\(O(V + E)\\)
-* Where E are all of the edges and V are each of the vertices.
+* Where E is the count edges and V is the count of vertices.
 * Where the graph uses an adjacency list structure
 * Aside: adjacency list has a space complexity of \\(O(V + E)\\).
 * "An adjacency list is an array A of separate lists. Each element of the array Ai is a list, which contains all the vertices that are adjacent to vertex i." - [Tutorial on Graph Representation](https://www.hackerearth.com/practice/algorithms/graphs/graph-representation/tutorial)
-* "An adjacency list representation for a graph associates each vertex in the graph with the collection of its neighbouring vertices or edges" - (Wikipedia Adjacency List)[https://en.wikipedia.org/wiki/Adjacency_list]
+* "An adjacency list representation for a graph associates each vertex in the graph with the collection of its neighbouring vertices or edges" - [Wikipedia Adjacency List](https://en.wikipedia.org/wiki/Adjacency_list)
 
 * [Stack Overflow - BFS and DFS time complexity](https://stackoverflow.com/questions/11468621/why-is-the-time-complexity-of-both-dfs-and-bfs-o-v-e)
 
