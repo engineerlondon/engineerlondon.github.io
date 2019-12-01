@@ -119,26 +119,6 @@ public void InsertionSortSimpleArrayTest()
 	var result = sort.Sort(arr);
 	Assert.Equal(expected, result);
 }
-
-[Fact]
-public void InsertionSortMediumSizedRandomArrayTest()
-{
-	int Min = int.MinValue;
-	int Max = int.MaxValue;
-	Random randNum = new Random();
-	int[] arr = Enumerable
-		.Repeat(0, 1000)
-		.Select(i => randNum.Next(Min, Max))
-		.ToArray();
-
-	int[] expected = new int[arr.Length];
-	arr.CopyTo(expected, 0);
-	Array.Sort(expected);
-
-	var sort = new InsertionSort();
-	var result = sort.Sort(arr);
-	Assert.Equal(expected, result);
-}
 {% endhighlight %}
 
 # Resources:

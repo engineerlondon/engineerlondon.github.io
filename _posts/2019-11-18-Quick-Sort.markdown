@@ -218,26 +218,6 @@ public void QuickSortSimpleArrayTest()
 	var result = quickSort.Sort();
 	Assert.Equal(expected, result);
 }
-
-[Fact]
-public void QuickSortLargeRandomArrayTest()
-{
-	int Min = int.MinValue;
-	int Max = int.MaxValue;
-	Random randNum = new Random();
-	int[] arr = Enumerable
-		.Repeat(0, 100000)
-		.Select(i => randNum.Next(Min, Max))
-		.ToArray();
-
-	int[] expected = new int[arr.Length];
-	arr.CopyTo(expected, 0);
-	Array.Sort(expected);
-
-	var quickSort = new QuickSort(arr);
-	var result = quickSort.Sort();
-	Assert.Equal(expected, result);
-}
 {% endhighlight %}
 
 # Resources:
