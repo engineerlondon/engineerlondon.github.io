@@ -14,9 +14,9 @@ Graphs and Trees are a versatile way of representing the real world, described i
 * Internet connections to properties where properties are nodes and telephone lines are edges.
 
 The multi dimensional nature of graph structures reduces the complexity of creating a digital representation of relationships.
-It is important to note that data in a graph structure is not necessarily connected. 
+It is important to note that data in a graph structure is not necessarily connected.
 
-Consequently being able to traverse graphs is valuable, we can find the shortest path between locations or the number of friends connecting two indirviduals on a social network.
+Consequently being able to traverse graphs is valuable, we can find the shortest path between locations or the number of friends connecting two individuals on a social network.
 * Breadth First Search (BFS) and Depth First Search (DFS) are two core tools that enable the finding of a specific connected node in a graph starting from a known node.
 * BFS can be used to efficiently evaluate the shortest path.
 * In the same way BFS can be used to find the shortest route from A to B.
@@ -24,8 +24,8 @@ Consequently being able to traverse graphs is valuable, we can find the shortest
 # DFS vs BFS
 There are a number of situations where BFS is more appropriate than DFS and vice versa, the context of the interaction is crucial for choosing the right tool.
 * When a node should be close to the start point, eg Social network, the friend that a person is searching for is likely to be a small number of nodes from them. City I want to route to is likely to be the shorter distance, eg: We start in London (UK) and want to reach Glasgow I want the map to offer Glasgow, Scotland (UK) before Glasgow, Montana (USA). - BFS
-* If a graph has "infinite" relationships for example the internet with its (~340 undecillion possible addresses) and we want to send packets from A to B, we use a specialised version of BFS (Dijkstra's algorithm) which will take into account the cost of a route, we also make use of Time to live (TTL) or hop limit in the system to avoid requests continuig forever.
-* If solutions are frequent but located deep in the tree BFS will likely take longer and require more memory than DFS eg: given a Graph represnting the geographical location of all towns and villages in Ireland, find a town or village located on the Wild Atlantic way, start in Dublin.
+* If a graph has "infinite" relationships for example the internet with its (~340 undecillion possible addresses) and we want to send packets from A to B, we use a specialised version of BFS (Dijkstra's algorithm) which will take into account the cost of a route, we also make use of Time to live (TTL) or hop limit in the system to avoid requests continuing forever.
+* If solutions are frequent but located deep in the tree BFS will likely take longer and require more memory than DFS eg: given a Graph representing the geographical location of all towns and villages in Ireland, find a town or village located on the Wild Atlantic way, start in Dublin.
 
 # Runtime: Worst case: \\(O(V + E)\\)
 * Where E is the count edges and V is the count of vertices (nodes).
@@ -33,7 +33,7 @@ There are a number of situations where BFS is more appropriate than DFS and vice
 * [Stack Overflow - BFS and DFS time complexity](https://stackoverflow.com/questions/11468621/why-is-the-time-complexity-of-both-dfs-and-bfs-o-v-e)
 
 # Memory: Worst case \\(O(V)\\)
-* Where V is the set of vertices / count of all nodes, since in the worst case we could have a single head node with all other nodes imediately attached, as you will see below, we will enqueue all of the child nodes before starting to dequeue them. As the graph gets larger this could become impractical. 
+* Where V is the set of vertices / count of all nodes, since in the worst case we could have a single head node with all other nodes immediately attached, as you will see below, we will enqueue all of the child nodes before starting to dequeue them. As the graph gets larger this could become impractical.
 
 # Adjacency Graph space complexity \\(O(V + E)\\)
 * It is sometimes useful to consider the cost of the actual graph since we might want to fit both the graph and the data structure required to carry out the search on one machine.
@@ -67,7 +67,7 @@ public SimpleNode Search(SimpleNode root, string elementToFind)
 		var elem = queue.Dequeue();
 		if (elem.Name.Equals(elementToFind))
 			return elem;
-		
+
 
 		foreach (SimpleNode n in elem.Children)
 		{

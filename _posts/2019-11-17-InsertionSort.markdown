@@ -5,7 +5,7 @@ date:   2019-11-17 09:00:00 +0000
 categories: algorithms
 mathjax: true
 ---
-A simple search algorithm, we iterate through each element in our array starting from index=1, we store `arr[i]` in a a temp variable, we then test if the element we have on the LHS of our temp "currentValue" ie arr[0] should be on the RHS of the temp value with `arr[j] > currentValue`, if the element is already in the correct place relative to the current value we  skip over the while loop and for the sake of keeping the code simple we assign the value we took from arr[i] back to arr[i] resulting in no change. However if the currentValue is less than the previous value ie we have a bigger value at arr[i] than at arr[i+1] eg `arr[1] > arr[2]`, then we go into the while loop which shifts each value that satisfies this condition to the right by one to make a space to **insert** the value.
+A simple search algorithm, we iterate through each element in our array starting from index=1, we store `arr[i]` in a temp variable, we then test if the element we have on the LHS of our temp "currentValue" ie arr[0] should be on the RHS of the temp value with `arr[j] > currentValue`, if the element is already in the correct place relative to the current value we  skip over the while loop and for the sake of keeping the code simple we assign the value we took from arr[i] back to arr[i] resulting in no change. However if the currentValue is less than the previous value ie we have a bigger value at arr[i] than at arr[i+1] eg `arr[1] > arr[2]`, then we go into the while loop which shifts each value that satisfies this condition to the right by one to make a space to **insert** the value.
 
 # Runtime: \\(O (n^2)\\) average case.
 * Where n is the number of elements to sort.
@@ -54,7 +54,7 @@ We start with:
 * Fourth currentValue = 1000, j = 3, `2002 > 1000` == true so this is our first element to move, we go into the loop, and shift arr[j] right 1 onto  arr[j + 1] ie replacing 1000 with 2002, then `j--`.
 * Go through the loop again arr[2] `2001 > 1000` so 2001 is shifted to the right one place, over the top of where 2002 was, then `j--`.
 * arr[1] `1500 > 1000` so 1500 is shifted right one place and `j--`.
-* j = 0, we test `arr[0] > currentValue` ie `22 > 1000` == false so we exit the while loop and **insert** our temp/currentValue 1000 into arr[j + 1]. 
+* j = 0, we test `arr[0] > currentValue` ie `22 > 1000` == false so we exit the while loop and **insert** our temp/currentValue 1000 into arr[j + 1].
 
 | Index  |  0  |     1    |    2   |    3   |     4    |   5  |   6  |  7  |  8  |
 |:------:|:---:|:--------:|:------:|:------:|:--------:|:----:|:----:|:---:|:---:|
@@ -122,4 +122,4 @@ public void InsertionSortSimpleArrayTest()
 {% endhighlight %}
 
 # Resources:
-* [Hacker Rank - insertionsort ](https://www.hackerrank.com/challenges/insertionsort2/problem)
+* [Hacker Rank - Insertion Sort ](https://www.hackerrank.com/challenges/insertionsort2/problem)

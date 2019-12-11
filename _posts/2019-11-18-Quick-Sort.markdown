@@ -77,7 +77,7 @@ public class QuickSort
 {% endhighlight %}
 
 # Stepping through:
-I reccomend doing this yourself in an IDE.
+I recommend doing this yourself in an IDE.
 
 We are aiming for a sorted list:
 
@@ -94,7 +94,7 @@ We start with:
 # Sort calls Partition:
 * We pick the middle of the array for our partition as this reduces the risk of the worst case performance O(n^2) ie: `int left = 0, right = arr.Length -1`.
 * `int pivot = _arr[(left + right) / 2]` Eg: *pivot = 1000*.
-* `while (left <= right)` Check that the pointers that we will use to choose elements to swap are still valid. Quick Sort will work with values around the current pivot until this is not longer satisfied, then partition again, selecting a new pivot in the proccess.
+* `while (left <= right)` Check that the pointers that we will use to choose elements to swap are still valid. Quick Sort will work with values around the current pivot until this is not longer satisfied, then partition again, selecting a new pivot in the process.
 * `while (_arr[left] < pivot) left++` Find a value on the LHS of the pivot that should be on the RHS. ie greater than 1000 for our first pass, the first is left = 1, **arr[1] = 1500**.
 * `while (_arr[right] > pivot) right--` Does the same for the value on the RHS that should be on the LHS. ie take the first value that is less than 1000, in this case **arr[8] = 14**.
 * `if (left <= right)` We only swap the values chosen if the index in left, is equal to or lower than the index in right. This is the same test as the earlier `while (left <= right)`   
@@ -118,11 +118,11 @@ We start with:
   * Increment left and **decrement** right, left=3, right=6.
   * `while (left <= right)` 3 < 6 == true, we continue iterating:
   * _arr[left] is 2002 < pivot 1000 == false, so left remains 3.
-  * However: _arr[right] == _arr[6] == 2003 > pivot 1000 == true, so `right--` becomes 5, 
+  * However: _arr[right] == _arr[6] == 2003 > pivot 1000 == true, so `right--` becomes 5,
   * _arr[5] is 2000 < pivot 1000 == true, so `right--` becomes 4.
   * _arr[4] is 1000 < 1000 == false, we move on.
   * `3 <= 4` so we swap the values:
-  
+
 | Index |  0  |  1  |  2  |      3     |     4    |   5  |   6  |   7  |   8  |
 |:-----:|:---:|:---:|:---:|:----------:|:--------:|:----:|:----:|:----:|:----:|
 | arr   | 22  | 14  | 10  | **`1000`** | **2002** | 2000 | 2003 | 2001 | 1500 |
@@ -149,7 +149,7 @@ We start with:
 | arr   | **10**  | `14`  | **22** | 1000 | 2002 | 2000 | 2003 | 2001 | 1500 |
 
 * Increment left and **decrement** right, left=1, right=1.
-* `1 <= 1 == true`, 
+* `1 <= 1 == true`,
 * _arr[left] == _arr[1] == 14 < pivot 14 == false so left remains 1.
 * _arr[right] == _arr[1] == 14 > pivot 14 == false, so we move on.
 *  We go to swap 1 with 1, the swap method recognises this as not required and returns.
@@ -199,7 +199,7 @@ We start with:
 
 # Back up the stack to Sort
 * `if (left < index - 1)` left 4, is less than index - 1 (5).
-* We go through the partition proccess again with 4 and 5, resulting in no change, but index being set to 5.
+* We go through the partition process again with 4 and 5, resulting in no change, but index being set to 5.
 * index = 5, left = 4, right = 5, `if (left < index - 1)` == false, `if (index < right)` == false, so return back up.
 * We return up again, and again, and we are finally done.
 
