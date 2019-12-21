@@ -13,6 +13,8 @@ a {
 
 main a {
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: #AFAFAF;
 }
 
 a:visited {
@@ -22,6 +24,13 @@ a:visited {
 .site-header {
   border-top: none;
   border-bottom: 1px solid #828282;
+}
+
+.post-list-heading {
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: 
+    gray;
 }
 
 table th, table td {
@@ -39,4 +48,8 @@ table td, pre, code {
 
 table td code {
   background-color: white;
+}
+
+.post-content h2 {
+  font-size: 20px;
 }
