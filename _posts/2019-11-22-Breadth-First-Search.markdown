@@ -2,7 +2,7 @@
 layout: post
 title:  "Breadth First Search"
 date:   2019-11-21 09:00:00 +0000
-categories: algorithms, searching
+categories: algorithms
 mathjax: true
 ---
 Graphs and Trees are a versatile way of representing the real world, described in terms of nodes (ie the entities of interest) and edges (ie the links between the nodes), examples include:
