@@ -6,14 +6,9 @@ categories: general
 mathjax: true
 ---
 
-The following is a list of technical topics that I believe are fundermental to making good software engineering decisions.
+The following is a list of technical topics that I have been asked about in interviews, it is a high level revision sheet, designed to prompt rather than be a full explaination. I highly reccomend taking a copy and augmenting it to match your needs.
 
-The list is in no particular order and is considered a very brief introduction / reminder of a topic, use this is a spring board to seek out further information.
-I reccomend creating your own list, in your own words. If you want to send your topics I will happily add them to this list and in the process provide feedback / my take on the same.
-
-This list has been put together from various sources (see References), the majority is a re-creation or summary of these sources, focused on embedding my own understanding of the topics.
-
-If you find anything that does not read well or you do not think is accurate, as always please raise an issue here: [GitHub Issues engineerlondon.co.uk](https://github.com/engineerlondon/engineerlondon.github.io/issues).
+If you find anything that does not read well or you do not think is accurate, as always please raise an issue here: [GitHub Issues engineerlondon.co.uk](https://github.com/engineerlondon/engineerlondon.github.io/issues). Any input will be gratefully recieved.
 
 # Relational DBs
 ## Concurrency control
@@ -66,7 +61,7 @@ If you find anything that does not read well or you do not think is accurate, as
 
 ## Generics
 - Generics make it possible to design classes and methods that defer the specification of one or more types until the class or method is declared, generics are replaced with a specific type at compile time.
-- Code will still be type safe, but avoids writing the same code for every type of object, a practical example is the Stackoverflow C# auto retry method (Q: 1563191), pass in any method, with any return type, it will be auto retried and return the method's normal return type. (it also makes use of delegates in the form of Func<T> where T is the generic return type.) https://stackoverflow.com/questions/1563191
+- Code will still be type safe, but avoids writing the same code for every type of object, a practical example is the Stackoverflow C# auto retry method (Q: 1563191), pass in any method, with any return type, it will be auto retried and return the method's normal return type. (it also makes use of delegates in the form of Func<T> where T is the generic return type.) [https://stackoverflow.com/questions/1563191](https://stackoverflow.com/questions/1563191)
 
 `public static T Do<T>(Func<T> function, TimeSpan interval, int maxRetry = 3)
 {
@@ -93,7 +88,7 @@ Makes use of built-in generic delegate [Tutorials Teacher Generics](https://www.
 						};`
 
 # MVC
-https://www.tutorialsteacher.com/mvc/action-method-in-mvc
+[https://www.tutorialsteacher.com/mvc/action-method-in-mvc](https://www.tutorialsteacher.com/mvc/action-method-in-mvc)
 ## Model binding:
 - DefaultModelBinder -
 - RouteData is a property of the base Controller class, RouteData can be accessed in any controller. RouteData contains route information of a current request. You can get the controller, action or parameter information using RouteData.
@@ -165,11 +160,14 @@ public class CombinedMaxAttribute : ValidationAttribute
  - OPTIONS – Request details about how to communicate.
 [Martin Fowler](https://martinfowler.com/articles/richardsonMaturityModel.html)
 
-# OOP Design patterns
-- https://csharpindepth.com/articles/singleton
+# Object Oriented Programming (OOP) Design patterns
+- [https://csharpindepth.com/articles/singleton](https://csharpindepth.com/articles/singleton)
 
 Singleton:
 - There are issues with the Singleton pattern when it comes to unit testing, however it is a powerful and commonly used tool.
+- Used to avoid creating multiple instances of an object.
+- Simplifies access by automatically creating an instance if it has not already been created and only ever allowing one instance to be created.
+
 {% highlight Csharp %}
 public sealed class Singleton
 {
@@ -192,11 +190,13 @@ public sealed class Singleton
 }
 {% endhighlight %}
 
-# OOP Design principles
-- Encapsulation - Group related properties and methods together (in a class).
-- Abstraction -
-- Inheritance
-- Polymorphism
+# Object Oriented Programming (OOP) Design principles
+
+- **Encapsulation** - Group related properties and methods together (in a class).
+- **Abstraction** - Each object only exposes the high-level mechanism's required, ie hide internal implementation details.
+- **Inheritance** - Reuse common logic and extract unique logic into a separate class.
+- **Polymorphism** (many shapes) - Derived classes can be treated as their parent class, 
+- [freecodecamp.org Object Oriented Programming](https://www.freecodecamp.org/news/object-oriented-programming-concepts-21bb035f7260)
 
 ## SOLID principles
 - **S** - Single-responsibility principle: A class should have one and only one reason to change, meaning that a class should have only one job.
@@ -247,7 +247,8 @@ And in your MVC Controller:
 # Security
 ## Encryption and hashing
 - Encryption is a mechanism used for protecting data.
-Asymmetric Encryption:
+#### Asymmetric Encryption:
+- Provides confidentiality, authenticity and non-repudiation of electronic data.
 - Use a public key (to encrypt the data) and a private key to decrypt the data, if someone has your private key they can decrypt the data. By intercepting the communication.
 - At the start of an encrypted communication there is a key handshake, where the public key of both parties are sent to each other. And the type of encryption to be used is communicated.
 - Then all subsequent communication can be wrapped using an encryption method (like a C# encryption library which provides SHA256 / SHA512).
@@ -259,6 +260,7 @@ Asymmetric Encryption:
  - Asymmetric encryption requires more computation than Symmetric encryption.
  - Commonly used for protecting communications eg: SSL on a login / payment.
  - SSL is now a standard rather than the exception for most websites, largely driven by a number of Google initiatives. [Google Blog 2014 https as ranking signal](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html).
+ - [docs.microsoft.com dotnet wcf working with certificates](https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/working-with-certificates)
 
 # Symmetric encryption
 - Only one key is used to encrypt the data, the same key is used to decrypt.
@@ -268,11 +270,13 @@ Asymmetric Encryption:
 - The use of 2FA increases the security of an individual's account, particularly from their password being exposed, ie even if the individual's username and password have been compromised, 2FA will both alert the individual to an attempted breach of security and stop the breach from progressing. Typically this can be done by sending a message with a one time password to the person, eg texting a pin number for each login.
 
 # Asynchronous (async / await)
-`Task<Toast> toastTask = ToastBread(2);
+{% highlight Csharp %}
+Task<Toast> toastTask = ToastBread(2);
 Task<Egg> eggTask = FryEggs(2);
 Egg eggs = await eggTask;
 Toast toast = await toastTask;
-ApplyButter(toast);`
+ApplyButter(toast);
+{% endhighlight %}
 
 - You should move the Apply Butter method inside a new MakeToastWithButter method which returns a Task<Toast\>
 
@@ -315,7 +319,7 @@ Content-Length: ...
 }
 {% endhighlight %}
 
-## Versioning [Semantic Versioning](https://semver.org)
+## Versioning - [Semantic Versioning](https://semver.org)
 - Swagger recommend semantic versioning ie major.minor.patch
 - Major version when you make incompatible API changes
 - Patch and minor version MUST be reset to 0 when major version is incremented.
@@ -323,9 +327,11 @@ Content-Length: ...
 - Patch version MUST be reset to 0 when minor version is incremented.
 - PATCH version when you make backwards compatible bug fixes.
 - URL versioning (Major only) and HTTP header versioning – is first and foremost a release management strategy.
-- URL versioning has the advantage of being very visible, and testable through a browser. But the downside is it makes hypermedia.
-- HTTP header versioning avoids the  hypermedia issue where links can point to an old version, but are less visible.
+- URL versioning has the advantage of being very visible, and testable through a browser.
+- HTTP header versioning avoids the hypermedia issue where links can point to an old version, but are less visible.
 - Consider consumer based testing if services are provided by a large organisation. Ie providers of a service can check if they have broken aspects of the interface that the consumer is expecting.
+- [Martin Fowler enterprise REST](https://martinfowler.com/articles/enterpriseREST.html)
+- RFC2616 - [Hypertext Transfer Protocol RFC](http://pretty-rfc.herokuapp.com/RFC2616)
 
 # Types of caching:
 
@@ -353,20 +359,20 @@ Content-Length: ...
   - The Merge method does the heavy lifting.
 - Quick Sort - average runtime \\(O(nlogn) \\), worst case \\(O(n^2)\\), memory \\(O(log(n))\\)
   - Pick a random element, then partition the array so that all numbers that are less than the partitioning element are swapped to one side and all numbers greater than the partitioning element are swapped to the other side, repeat swapping until all elements are on the correct side of the partition.
-- Bucket Sort:		Worst case runtime O(n^2)
-- Bubble Sort: 		Worst case runtime O(n^2), Memory O(1)
-- Selection Sort: 	Worst case runtime O(n^2), Memory O(1)
-- Heap Sort: 		O(n log(n))
+- Bucket Sort:		Worst case runtime \\(O(n^2)\\)
+- Bubble Sort: 		Worst case runtime \\(O(n^2)\\), Memory \\(O(1)\\)
+- Selection Sort: 	Worst case runtime \\(O(n^2)\\), Memory \\(O(1)\\)
+- Heap Sort: 		\\(O(n log(n))\\)
   - An improved Selection Sort, The improvement consists of the use of a heap data structure rather than a linear-time search to find the maximum.
-- Radix Sort:		Worst case runtime O(nk)
+- Radix Sort:		Worst case runtime \\(O(nk)\\)
   - Only works with whole numbers (integers), takes advantage of the fact that integers have a finite number of bits.
   - Where n is the number of elements and k is the number of passes of the sorting algorithm.
-  - https://stackoverflow.com/questions/4461737/what-is-the-difference-between-bucket-sort-and-radix-sort
+  - [stackoverflow difference between bucket and radix sort](https://stackoverflow.com/questions/4461737/what-is-the-difference-between-bucket-sort-and-radix-sort)
 
 # Automated testing
 
 # Unit testing:
-- Read: https://xp123.com/articles/3a-arrange-act-assert
+- Read: [https://xp123.com/articles/3a-arrange-act-assert](https://xp123.com/articles/3a-arrange-act-assert)
 - Arrange, Act, Assert, should be implemented in the inverse order ie:
   - Write your assert: `Assert.That(expected, Is.EqualTo(result));`
   - Write the action: `var result = GetStudent(searchCriteria);`
@@ -444,12 +450,14 @@ Positives:
 
 ## Durable / Non-Durable
 - Subscribers to a topic destination have either durable and non-durable subscriptions. Durable subscriptions provide increased reliability at the cost of slower throughput.
+
 **Durable:**
 - Use for situations where you require guaranteed delivery, and ordering is not a concern, ie if we shut down the service the queue is persisted to disk/similar. And made available once the service comes back up. This is good as long as:
   - The volume of data will fit on disk and can be re-played in a timely fashion, I have seen implementations where the queue backlog took hours or days to replay.
   - The Message Queue message broker must persistently store the list of messages assigned to each durable subscription so that should the broker fail, the list is available after recovery.
   - Persistent messages for durable subscriptions are stored persistently, so that should a broker fail, the messages can still be delivered after recovery, when the corresponding consumer becomes active. By contrast, persistent messages for non-durable subscriptions are not stored persistently (should a broker fail, the corresponding consumer connection is lost and the message would never be delivered).
   - If the messages need to be delivered in a certain order then persistence can be bad. I have seen an implementation where status messages would arrive out of order and the consumer not checking the creation time.
+
 **Non-durable:**
 - Useful where the data can easily be re-played from a datastore.
 - Does not require the ability to persist the data.
@@ -462,7 +470,8 @@ Positives:
  https://martinfowler.com/bliki/BoundedContext.html
 - DDD divides up a large system into Bounded Contexts, each of which can have a unified model - essentially a way of structuring MultipleCanonicalModels.
 
-# Value Object - A Value Object is an immutable type that is distinguishable only by the state of its properties.
+# Value Object
+- A Value Object is an immutable type that is distinguishable only by the state of its properties.
 
 {% highlight Csharp %}
 public class SomeValue
@@ -508,23 +517,33 @@ match nextLine with
 
 
 # References:
-Relational database concurrency - https://en.wikipedia.org/wiki/Concurrency_control
-Big O Notation - https://en.wikipedia.org/wiki/Big_O_notation
-DDD - https://martinfowler.com/bliki/BoundedContext.html
-Mocks - https://medium.com/@piraveenaparalogarajah/what-is-mocking-in-testing-d4b0f2dbe20a
-Sorting:
-Heap Sort - https://en.wikipedia.org/wiki/Heapsort
-Cracking the coding interview (book, ISBN 9780984782857)
-Delegates - https://docs.microsoft.com/en-us/dotnet/api/system.func-2?view=netframework-4.8
-Clustered / non-clustered index - https://docs.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver15
-No Sql - https://en.wikipedia.org/wiki/NoSQL
-Object relational impedance mismatch - https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch
-F# persistent-data-structures - https://blog.mavnn.co.uk/persistent-data-structures
-F# async - https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/asynchronous-and-concurrent-programming/async
-F# Functor - https://stackoverflow.com/questions/2030863/in-functional-programming-what-is-a-functor
-SOLID (O) Coffee Machine - https://stackify.com/solid-design-open-closed-principle
-Async Await - https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async
-REST Architectural principles - https://stackoverflow.com/questions/671118/what-exactly-is-restful-programming
-REST versioning: https://stackoverflow.com/questions/389169/best-practices-for-api-versioning
-Martin Fouler on versioning - https://martinfowler.com/articles/enterpriseREST.html#versioning
-MVC - https://stackoverflow.com/questions/10982012/how-to-create-custom-compare-attribute-for-view-model-properties
+
+- Cracking the coding interview (book, ISBN 9780984782857) [http://www.crackingthecodinginterview.com](http://www.crackingthecodinginterview.com)
+- Relational database concurrency - [Wikipedia Concurrency Control](https://en.wikipedia.org/wiki/Concurrency_control)
+- Big O Notation - [Wikipedia Big O Notation](https://en.wikipedia.org/wiki/Big_O_notation)
+- Domain Driven Design (DDD) - [Martin Fowler.com Bounded Context](https://martinfowler.com/bliki/BoundedContext.html)
+- Mocks (Testing) - [medium.com what is mocking in testing](https://medium.com/@piraveenaparalogarajah/what-is-mocking-in-testing-d4b0f2dbe20a)
+- Heap Sort (Sorting) - [Wikipedia Heapsort](https://en.wikipedia.org/wiki/Heapsort)
+- Delegates - [docs.microsoft.com dotnet api Func<T,TResult> Delegate](https://docs.microsoft.com/en-us/dotnet/api/system.func-2?view=netframework-4.8)
+- DB Indexes [docs.microsoft.com sql relational-databases indexes clustered and nonclustered indexes](https://docs.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver15)
+- No Sql - [Wikipedia NoSQL](https://en.wikipedia.org/wiki/NoSQL)
+- Object relational impedance mismatch - [Wikipedia Object Relational Impedance Mismatch](https://en.wikipedia.org/wiki/Object-relational_impedance_mismatch)
+- F# persistent-data-structures - [blog.mavnn.co.uk Persistent Data Structures](https://blog.mavnn.co.uk/persistent-data-structures)
+- F# async - [microsoft.com fsharp tutorials asynchronous and concurrent programming](https://docs.microsoft.com/en-us/dotnet/fsharp/tutorials/asynchronous-and-concurrent-programming/async)
+- F# Functor - [Stackoverflow what is a functor](https://stackoverflow.com/questions/2030863/in-functional-programming-what-is-a-functor)
+- SOLID (O) Coffee Machine - [Stackify.com solid design open closed principle](https://stackify.com/solid-design-open-closed-principle)
+- Async Await - [docs.microsoft.com csharp concepts async](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async)
+- REST Architectural principles - [stackoverflow.com what exactly is restful programming](https://stackoverflow.com/questions/671118/what-exactly-is-restful-programming)
+- REST versioning - [stackoverflow.com best practices for api versioning](https://stackoverflow.com/questions/389169/best-practices-for-api-versioning)
+- Martin Fouler on versioning - [martinfowler.com enterpriseREST versioning](https://martinfowler.com/articles/enterpriseREST.html#versioning)
+- Semantic versioning [https://semver.org](https://semver.org)
+- MVC - [stackoverflow how to create custom compare attribute](https://stackoverflow.com/questions/10982012/how-to-create-custom-compare-attribute-for-view-model-properties)
+- MVC - [tutorialsteacher.com MVC action-method-in-mvc](https://www.tutorialsteacher.com/mvc/action-method-in-mvc)
+- Singleton - [CSharp In Depth Singleton](https://csharpindepth.com/articles/singleton)
+- Generics - [Stackoverflow Cleanest Way To Write Retry Logic](https://stackoverflow.com/questions/1563191/cleanest-way-to-write-retry-logic)
+- Generics - [Tutorials Teacher Generics](https://www.tutorialsteacher.com/csharp/constraints-in-generic-csharp)
+- Auto Back Off - [docs.microsoft architecture patterns retry](https://docs.microsoft.com/en-us/azure/architecture/patterns/retry)
+- [Microsoft retries exponential backoff](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly)
+- [docs.microsoft.com dotnet wcf working with certificates](https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/working-with-certificates)
+- Encryption - [Venafi.com Use cases of Symmetric and Asymmetric Encryption](https://www.venafi.com/blog/what-are-best-use-cases-symmetric-vs-asymmetric-encryption)
+- Caching - [Michaels Coding Spot C# cache implementations ](https://michaelscodingspot.com/cache-implementations-in-csharp-net)
