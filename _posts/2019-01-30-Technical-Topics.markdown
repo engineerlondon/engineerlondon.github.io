@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Technical Topics"
-date:   2019-12-11 09:00:00 +0000
+date:   2020-01-30 09:00:00 +0000
 categories: general
 mathjax: true
 ---
@@ -21,43 +21,47 @@ If you find anything that does not read well or you do not think is accurate, as
       - This property ensures that either the transaction occurs completely or it does not occur at all.
       - The database management system maintains the atomic nature of transactions in spite of any DBMS, operating system, or hardware failure.
     - Consistency:
-      - Only valid data will be written to the database (constraints are enforced).If part of a transaction would result in data inconsistency the transaction will be rolled back.
+      - Only valid data will be written to the database (constraints are enforced). If part of a transaction would result in data inconsistency the transaction will be rolled back.
     - Isolation:
       - Transactions can occur simultaneously without causing any inconsistency.
       - The resultant state of the system after executing all the transactions is same as the state that would be achieved if the transactions were executed serially.
       - Prevents intermediate data from being read by a different transaction.
     - Durability:
-      - This property ensures that all the changes made by a transaction after its successful execution are persisted (usually to disk).
-      - Ensures that changes are not lost even if there is a failure.
-
+      - All changes made by a transaction after its successful execution are persisted (usually to disk).
+      - Changes are not lost even if there is a failure.
 
 ## Clustered / non-clustered / mirrored database infrastructure
 - Clustering:
-  - Improves resilience to failure (ie a database node going offline)
-  - Comparatively cheap scaling (especially for high volume read operations)
-  - For high volume data modifications (insert, update or delete) contention can be a problem, as the data is synchronised across the nodes. An alternative that is common when using Microsoft Sql Server is Database Mirroring, which has the option of using “High-performance mode”, this comes at a cost of having a Mast Slave configuration, some data loss can occur if a forced role switch is required eg if you loose the master.
-- Non-clustered:
+  - Improves resilience to failure (ie a database node going offline).
+  - Comparatively cheap scaling (especially for high volume read operations).
+  - For high volume data modifications (insert, update or delete) contention can be a problem, as the data is synchronised across the nodes. An alternative that is common when using Microsoft Sql Server is Database Mirroring, which has the option of using “High-performance mode”, this comes at a cost of having a "master slave" configuration, some data loss can occur if a forced role switch is required for example if the master suffers a disaster.
+- Non-clustered (eg master slave or single node):
   - Simpler to manage.
   - Traditionally quicker to get started.
   - Fewer nodes.
   - Not necessarily cheaper depending on how much load and type of load you want to support.
   - Generally speaking a single instance or master slave configuration can out perform a small cluster for Create, Update, Delete operations.
+  - Increased risk of an outage or data loss.
 
-## Clustered and non-clustered indexes:
-- Clustered index: only one on a table, if a primary key has been set then this will be the clustered index.
-- Clustered indexes do not take additional space as they are created by ordering the data in the table.
-- Non-clustered - like clustered, both provide lookup performance improvements, however a non-clustered index can affect Insert performance and will require space in which to store the index.
+## Clustered and non-clustered indexes (improve lookup performance):
+- Clustered index:
+  - **Created by ordering the data in the table.**
+  - Max one per table.
+  - Primary key will be the clustered index (if set).
+  - Do not require additional space
+- Non-clustered:
+  - Can decrease Insert performance.
+  - Require additional space both disk and memory to store and use the index.
+
+- Is there any point to adding an index to a datetime field?
 
 # NoSQL (or "Not only SQL")
 - Simpler "horizontal" scaling
-- Reduces “object-relational impedance mismatch” (ie relational data does not map well to OO objects for a number of reasons, NoSQL allows the storage of objects as serialised documents, in the case of a document store).
+- Reduces “object-relational impedance mismatch” (ie: frequently relational data does not map well to OO objects for a number of reasons, a NoSQL document store serialises objects to  documents, frequently storing the data as json or bson).
 - Most NoSQL stores are not ACID compliant, usually because they compromise consistency in favour of performance, which is often fine if you are working with “Big Data”. They do however implement **"eventual consistency"** (ie the data will be recorded correctly once it has synchronised to all nodes).
 - Some NoSQL systems may exhibit lost writes.
 
 # C# #
-## Abstract VS Interface
-- An interface defines the methods and properties that must be implemented to satisfy the interface. All methods and properties must be public since it has no implementation.
-- An Abstract class cannot be instantiated, instead it must be sub classed to allow the implementation of any abstract methods it contains. Methods in an abstract class can be private.
 
 ## Generics
 - Generics make it possible to design classes and methods that defer the specification of one or more types until the class or method is declared, generics are replaced with a specific type at compile time.
@@ -197,6 +201,10 @@ public sealed class Singleton
 - **Inheritance** - Reuse common logic and extract unique logic into a separate class.
 - **Polymorphism** (many shapes) - Derived classes can be treated as their parent class, 
 - [freecodecamp.org Object Oriented Programming](https://www.freecodecamp.org/news/object-oriented-programming-concepts-21bb035f7260)
+
+## Abstract VS Interface
+- An interface defines the methods and properties that must be implemented to satisfy the interface. All methods and properties must be public since it has no implementation.
+- An Abstract class cannot be instantiated, instead it must be sub classed to allow the implementation of any abstract methods it contains. Methods in an abstract class can be private.
 
 ## SOLID principles
 - **S** - Single-responsibility principle: A class should have one and only one reason to change, meaning that a class should have only one job.
