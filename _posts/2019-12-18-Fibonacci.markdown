@@ -19,20 +19,20 @@ mathjax: true
 {% highlight Csharp %}
 private static void Main()
 {
-	var numOfFibElements = 15;
-	var results = new List<int>();
-	for (int i = 0; i <= numOfFibElements; i++)
-			results.Add(Fibonacci(i));
+    var numOfFibElements = 15;
+    var results = new List<int>();
+    for (int i = 0; i <= numOfFibElements; i++)
+        results.Add(Fibonacci(i));
 
-	Console.WriteLine(string.Join(", ", results));
+    Console.WriteLine(string.Join(", ", results));
 }
 
 public static int Fibonacci(int n)
 {
-	if (n <= 1)
-		return n;
+    if (n <= 1)
+        return n;
 
-		return Fibonacci(n - 1) + Fibonacci(n - 2);
+    return Fibonacci(n - 1) + Fibonacci(n - 2);
 }
 {% endhighlight %}
 
@@ -52,13 +52,13 @@ n = 15 produces:
 {% highlight Csharp %}
 public static int Fibonacci(int n, int[] cache)
 {
-	if (n <= 1)
-		return n;
+    if (n <= 1)
+        return n;
 
-	if (cache[n] == 0)
-		cache[n] = Fibonacci(n - 1, cache) + Fibonacci(n - 2, cache);
+    if (cache[n] == 0)
+        cache[n] = Fibonacci(n - 1, cache) + Fibonacci(n - 2, cache);
 
-	return cache[n];
+    return cache[n];
 }
 {% endhighlight %}
 
@@ -68,19 +68,19 @@ public static int Fibonacci(int n, int[] cache)
 {% highlight Csharp %}
 public static long Fibonacci(long n)
 {
-	long a = 0;
-	long b = 1;
-	for (long i = 0; i < n; i++)
-	{
-		long temp = a;
-		a = b;
-		b = temp + b;
-	}
+    long a = 0;
+    long b = 1;
+    for (long i = 0; i < n; i++)
+    {
+        long temp = a;
+        a = b;
+        b = temp + b;
+    }
 
-	return a;
+    return a;
 }
 {% endhighlight %}
 
 Resources:
-- https://www.dotnetperls.com/fibonacci
-- https://www.javatpoint.com/python-display-fibonacci-sequence-recursion
+- [https://www.dotnetperls.com/fibonacci](https://www.dotnetperls.com/fibonacci)
+- [https://www.javatpoint.com/python-display-fibonacci-sequence-recursion](https://www.javatpoint.com/python-display-fibonacci-sequence-recursion)
