@@ -37,10 +37,10 @@ public static int Fibonacci(int n)
 {% endhighlight %}
 
 - So if we pass in 5:
-- We get a binary call tree result where each child node is either n-1 or n-2 until we reach 0 or 1.
-- We sum these values to get our total result, in this case we get 1, 0, 1, 1, 0, 1, 0, 1 on the leaves, ie 5.
-- We can see when doing this that we get repeated nodes, 3 twice and 2 three times.
-- Storing a cache for these values we can reduce our space requirements (fewer calls on the stack), and improve performance.
+  - We get a binary call tree result where each child node is either n-1 or n-2 until we reach 0 or 1.
+  - We sum these values to get our total result, in this case we get 1, 0, 1, 1, 0, 1, 0, 1 on the leaves, ie 5.
+  - We can see when doing this that we get repeated nodes, 3 twice and 2 three times.
+  - Storing a cache for these repeated requests will reduce our space requirements (fewer calls on the stack vs the cache), and reduces runtime.
 
 n = 15 produces:
 - 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610.
