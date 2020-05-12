@@ -144,11 +144,12 @@ public class CombinedMaxAttribute : ValidationAttribute
 {% endhighlight %}
 
 ## C# MVC Actions:
-- All the public methods of a Controller class are called Action methods. They are like any other normal methods with the following restrictions:
-  - Action method must be public. It cannot be private or protected
-  - Action method cannot be overloaded
-  - Action method cannot be a static method.
-  - Action selector is the attribute that can be applied to action methods. It helps the routing engine to select the correct action method to handle a particular request. C# MVC 5 includes the following action selector attributes:
+- All the public methods of a Controller class are called Action methods. Like any methods with the following restrictions:
+  - Must be public. (They cannot be private or protected.)
+  - Cannot be overloaded.
+  - Cannot be static.
+- Action selector is an attribute that can be applied to an action method to help the routing engine to select the correct action method for a particular request.
+- C# MVC 5 includes selector attributes:
      - ActionName
      - NonAction
      - ActionVerbs
@@ -168,8 +169,8 @@ public class CombinedMaxAttribute : ValidationAttribute
 - [https://csharpindepth.com/articles/singleton](https://csharpindepth.com/articles/singleton)
 
 Singleton:
-- There are issues with the Singleton pattern when it comes to unit testing, however it is a powerful and commonly used tool.
-- Used to avoid creating multiple instances of an object.
+- There are issues with the Singleton pattern when it comes to unit testing, however it is commonly used.
+- Avoid creating multiple instances of an object.
 - Simplifies access by automatically creating an instance if it has not already been created and only ever allowing one instance to be created.
 
 {% highlight Csharp %}
@@ -199,7 +200,7 @@ public sealed class Singleton
 - **Encapsulation** - Group related properties and methods together (in a class).
 - **Abstraction** - Each object only exposes the high-level mechanism's required, ie hide internal implementation details.
 - **Inheritance** - Reuse common logic and extract unique logic into a separate class.
-- **Polymorphism** (many shapes) - Derived classes can be treated as their parent class, 
+- **Polymorphism** (many shapes) - Derived classes can be treated as their parent class,
 - [freecodecamp.org Object Oriented Programming](https://www.freecodecamp.org/news/object-oriented-programming-concepts-21bb035f7260)
 
 ## Abstract VS Interface
