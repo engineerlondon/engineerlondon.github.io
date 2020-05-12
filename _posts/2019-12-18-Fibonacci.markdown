@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Fibonacci Recursion and Iterative"
+title:  "Fibonacci Recursive and Iterative"
 date:   2019-12-18 09:00:00 +0000
 categories: algorithms
 mathjax: true
