@@ -14,7 +14,7 @@ If you find anything that does not read well or you do not think is accurate, as
 ## Concurrency control
   - If transactions are executed serially, i.e., sequentially with no overlap in time, no transaction concurrency exists. However, if concurrent transactions with interleaving operations are allowed in an uncontrolled manner, some unexpected, undesirable results may occur, such as:
     - The lost update problem: Two simultaneous transactions are executed, both read data from the database, one updates the record, then the other updates the record, the first update is lost.
-    - The dirty read problem: A transaction is in progress, hits an error and beings to revert the changes, before the change is reverted a second translation occurs using the “Dirty Data”.
+    - The dirty read problem: A transaction is in progress, hits an error and beings to revert the changes, before the change is reverted a second transaction occurs using the “Dirty Data”.
     - The incorrect summary problem: If one transaction is calculating an aggregate summary function on a number of records while other transactions are updating some of these records, the aggregate function may calculate some values before they are updated and others after they are updated.
   - ACID – most relational database implementations are ACID compliant:
     - Atomicity (“All or nothing”):
